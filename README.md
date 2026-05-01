@@ -55,4 +55,8 @@ Helps transform raw notes into structured insights for better decision-making an
 ---
 
 ## 👨‍💻 Author
-Antas Gupta<img width="1675" height="955" alt="screenshot png" src="https://github.com/user-attachments/assets/f7e97648-ef8a-498b-821d-6be748b3b01a" />
+Antas Gupta
+
+
+## 🧪 Sample Output
+<img width="1675" height="955" alt="screenshot png" src="https://github.com/user-attachments/assets/f7e97648-ef8a-498b-821d-6be748b3b01a" />
