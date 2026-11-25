@@ -1,62 +1,58 @@
-# Smart Notes AI – Knowledge Extraction Tool
+# Smart Notes AI
 
-A full-stack application that transforms unstructured text into structured insights such as summaries, key points, and actionable tasks.
+A full-stack knowledge-extraction app that turns unstructured notes into a summary, key points, and action items.
 
----
+**Stack:** React 18, Node.js, Express, JavaScript, CSS
 
-## 🌍 Inspiration
-Inspired by knowledge management platforms like Propel, this project focuses on converting scattered information into reusable, structured knowledge.
+## What it does
 
----
+Paste text into the React UI and the app returns:
 
-## 🚀 Features
-- 🧠 Automatic summary generation  
-- 📌 Key point extraction  
-- ✅ Action item detection  
-- 🎨 Clean UI  
+- A short summary
+- Key points
+- Action items
 
----
+The frontend calls a single `POST /analyze` endpoint on the Express backend and renders the result.
 
-## 🛠️ Tech Stack
-- React (Frontend)  
-- Node.js + Express (Backend)  
+## How it works
 
----
+- `frontend/` — React 18 single-page app with loading and empty states.
+- `backend/` — Express server with CORS, JSON parsing, and a `POST /analyze` route.
+- The analyzer is currently a rule-based stub: it takes the first sentences as the summary and flags sentences containing "should", "need", or "must" as action items. It runs without an API key and is isolated in `analyzeText()` so a real model call can replace it without changing the API contract.
 
-## 📸 Demo
-![App Screenshot](./screenshot.png)
-
----
-
-## ⚙️ How to Run
+## Run locally
 
 ### Backend
-cd backend  
-npm install  
-node server.js  
+
+```bash
+cd backend
+npm install
+node server.js
+```
+
+Runs on `http://localhost:5000`.
 
 ### Frontend
-cd frontend  
-npm install  
-npm start  
 
----
+```bash
+cd frontend
+npm install
+npm start
+```
 
-## 💡 Use Case
-Helps transform raw notes into structured insights for better decision-making and knowledge management.
+The frontend calls `http://localhost:5000/analyze`.
 
----
+## API
 
-## 📌 Future Improvements
-- Add database (PostgreSQL)  
-- Integrate real AI APIs  
-- Improve UI/UX  
+| Method | Route | Body | Returns |
+|---|---|---|---|
+| POST | `/analyze` | `{ "text": "..." }` | `{ "result": "Summary: ...\nKey Points: ...\nAction Items: ..." }` |
 
----
+Missing or empty `text` returns `400` with `{ "error": "Text is required" }`.
 
-## 👨‍💻 Author
-Antas Gupta
+## Next steps
 
-
-## 🧪 Sample Output
-<img width="1675" height="955" alt="screenshot png" src="https://github.com/user-attachments/assets/f7e97648-ef8a-498b-821d-6be748b3b01a" />
+- Replace the stub analyzer with an LLM API call.
+- Return structured JSON instead of a formatted string.
+- Add persistence and user accounts.
+- Add tests for the analyzer and API contract.
